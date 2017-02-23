@@ -1,0 +1,106 @@
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+
+<style>
+    .input-boxes {
+       color: yellow; 
+       background: blue;
+       border: .5em solid purple;
+       border-radius: 20em;
+       padding: .8em;
+    }   
+</style>
+
+<h1 class="red">Header</h1>
+<p>Force = Mass * Acceleration</p>
+<section class="input-boxes">
+
+    Mass: <input id="mass" type="text" name="FirstName" value="4"><br>
+    Acc: <input id="accelleration" type="text" name="FirstName" value="3"><br>
+    Force: <input id="Force" type="text" name="FirstName" value="3"><br>
+</section>
+
+<script>
+    /* 
+        newtons first law calculator
+        
+        Force
+        Mass 
+        acceleration
+    */
+    
+    var mass = $("#mass").val(); // get the value of the mass
+    var accelleration = $("#accelleration").val(); // get the value of the accelleration   
+    var force = $("#Force").val(); // get the value of the accelleration   
+    
+    $("#mass").keyup(function(){
+            console.log($(this).val());
+            // we have new mass
+            // recalculate
+            // redisplay to screen
+            mass = $(this).val();
+            // call a function that does all we need
+            dislpayNewForce(force, mass, accelleration, "mass");
+    });
+    
+    $("#accelleration").keyup(function(){
+            console.log($(this).val());
+            // we have new mass
+            // recalculate
+            // redisplay to screen
+            accelleration = $(this).val();
+            dislpayNewForce(force, mass, accelleration, "accelleration");
+
+    });    
+
+    $("#Force").keyup(function(){
+            console.log($(this).val());
+            // we have new mass
+            // recalculate
+            // redisplay to screen
+            force = $(this).val();
+            dislpayNewForce(force, mass, accelleration, "force");
+    });
+    
+    dislpayNewForce(force, mass, accelleration, "");
+    
+    function dislpayNewForce(f, m, a, type) {
+       // calculate parameters
+       
+       if( type == "force" ) {
+           // we need to calculate either m or a
+          //  update acc
+          // display on screen
+          // f = ma
+          // m = f / a
+          // a = f / m 
+          
+          accelleration = f/m; 
+          $("#accelleration").val( accelleration );
+          console.log("force calculating..."); 
+
+       } else if ( type == "mass" ) {
+           //  update force
+          // display on screen
+            force = m*a;
+            $("#Force").val(force);
+            console.log("mass calculating...");   
+            
+       } else { // acc
+           //  update force
+          // display on screen
+                    mass = f/a;
+            $("#mass").val(mass);
+            console.log("mass calculating...");   
+       }
+      
+        return 0;
+    }
+    
+    
+    
+    
+</script>
